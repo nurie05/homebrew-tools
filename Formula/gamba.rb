@@ -1,4 +1,4 @@
-class GambaTool < Formula
+class Gamba < Formula
   desc "Operon finder and GTF analysis tool"
   homepage "https://github.com/nurie05/gamba-tool"
   version "2.0.0-test"
