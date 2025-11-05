@@ -6,7 +6,7 @@ class Gamba < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/nurie05/gamba-tool/releases/download/v2.0.0-test/gamba-aarch64-apple-darwin.zip"
-      sha256 "REPLACE_ME" # arm64
+      sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5" # arm64
     else
       url "https://github.com/nurie05/gamba-tool/releases/download/v2.0.0-test/gamba-x86_64-apple-darwin.zip"
       sha256 "REPLACE_ME" # intel
@@ -24,10 +24,10 @@ class Gamba < Formula
   end
 
   def install
-    bin.install "gamba_tool"
+    bin.install "gamba"
   end
 
   test do
-    assert_match "Usage", shell_output("#{bin}/gamba_tool --help")
+    assert_match "Usage", shell_output("#{bin}/gamba --help")
   end
 end
