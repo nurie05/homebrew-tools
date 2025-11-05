@@ -1,18 +1,33 @@
-class Gamba < Formula
+class GambaTool < Formula
   desc "Operon finder and GTF analysis tool"
   homepage "https://github.com/nurie05/gamba-tool"
-  url "https://github.com/nurie05/gamba-tool/archive/refs/tags/v1.4.0.tar.gz"
-  sha256 "b66645725dc72db590b1d64dc792badae38586d2811ee07bc4e00cb8db7a7f71"
-  license "MIT"
+  version "REPLACE_ME"
 
-  depends_on "rust" => :build
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/nurie05/gamba-tool/releases/download/v2.0.0-test/gamba-aarch64-apple-darwin.zip"
+      sha256 "REPLACE_ME" # arm64
+    else
+      url "https://github.com/nurie05/gamba-tool/releases/download/v2.0.0-test/gamba-x86_64-apple-darwin.zip"
+      sha256 "REPLACE_ME" # intel
+    end
+  end
+
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/nurie05/gamba-tool/releases/download/v0.3.0/gamba_tool-aarch64-unknown-linux-gnu.zip"
+      sha256 "REPLACE_ME" # linux-arm
+    else
+      url "https://github.com/nurie05/gamba-tool/releases/download/v2.0.0-test/gamba-x86_64-unknown-linux-gnu.zip"
+      sha256 "REPLACE_ME" # linux-x86
+    end
+  end
 
   def install
-    system "cargo", "install", *std_cargo_args
+    bin.install "gamba_tool"
   end
 
   test do
-    # minimal smoke test
-    assert_match "Usage", shell_output("#{bin}/gamba --help")
+    assert_match "Usage", shell_output("#{bin}/gamba_tool --help")
   end
 end
